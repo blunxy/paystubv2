@@ -10,10 +10,11 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "sinon": "^2.2.0"
   },
-  "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/blunxy/paystubv2.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blunxy/paystubv2.git"
   }
 }
