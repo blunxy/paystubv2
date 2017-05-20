@@ -41,4 +41,9 @@
 
 // .getEmploymentIncome()  // used in box 14 of T4, this includes all earnings + taxable benefits!
 
+// what does a PayStub do?
+//  .getEarnings()
+//  .getDeductions()
+//  .getTaxableBenefits()
+
 
