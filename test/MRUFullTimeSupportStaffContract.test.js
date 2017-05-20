@@ -4,7 +4,7 @@ var chai = require("chai");
 var expect = chai.expect;
 chai.should();
 
-var MRUContractFactory = require('../lib/mru-contract-factory');
+var MRUContractFactory = require('../src/mru-contract-factory');
 
 
 describe.skip('MRUFullTimeSupportStaffContract', function() {
