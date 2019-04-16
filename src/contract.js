@@ -3,18 +3,8 @@
 var Schedule = require('./schedule');
 var _earnings;
 
-function Contract(name, contractDetails) {
+function Contract() {
     _earnings = [];
-    generateSchedules(name, contractDetails);
-}
-
-function generateSchedules(name, contractDetails) {
-    if (Array.isArray(contractDetails)) {
-        generateMergedSchedules(name, contractDetails);
-    }
-    else {
-        generateSimpleSchedules(name, contractDetails);
-    }
 }
 
 function generateMergedSchedules(name, contractDetails) {
@@ -24,7 +14,7 @@ function generateMergedSchedules(name, contractDetails) {
 
     var mergedSchedule = Schedule.merge(startingSchedule, followingSchedule, mergePosition);
     mergedSchedule.name = name;
-    
+
     _earnings.push(mergedSchedule);
 }
 
@@ -41,12 +31,43 @@ function buildSchedule(name, contractDetails) {
     var payPerPayPeriod = contractDetails.salary;
 
     if (!!payPerPayPeriod) {
-        schedule.generate([payPerPayPeriod]);
+        if (!!contractDetails.semester) {
+            
+            var start = 1;
+            var end = 24;
+            switch (contractDetails.semester) {
+                case 1:
+                    end = 8;
+                    break;
+                case 2:
+                    start = 9;
+                    end = 12;
+                    break;
+                case 4:
+                    start = 17;
+                    break;
+                default:
+                    // code
+            }
+            schedule.generate([payPerPayPeriod], [start, end]);
+        }
+        else {
+            schedule.generate([payPerPayPeriod]);
+        }
+
     }
 
     return schedule;
 }
 
+Contract.prototype.addDetails = function(name, contractDetails) {
+    if (Array.isArray(contractDetails)) {
+        generateMergedSchedules(name, contractDetails);
+    }
+    else {
+        generateSimpleSchedules(name, contractDetails);
+    }
+};
 
 Contract.prototype.getEarningsSchedules = function() {
     return _earnings;
