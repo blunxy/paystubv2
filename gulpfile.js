@@ -5,13 +5,18 @@ var gulp = require('gulp'),
     gutil = require('gulp-util');
 
 gulp.task('mocha', function() {
-    return gulp.src(['test/*.js'], {read:false})
-    .pipe(mocha({reporter: 'landing'}))
-    .on('error', gutil.log);
+    return gulp.src(['test/*.js'], {
+            read: false
+        })
+        .pipe(mocha({
+            reporter: 'dot'
+        }))
+        .on('error', gutil.log);
 });
 
 gulp.task('watch-mocha', function() {
-    gulp.watch(['src/**/*.js', 'test/**/*.js'], ['mocha'] );
+    gulp.watch(['src/**/*.js', 'test/**/*.js'], ['mocha']);
 });
+
 
 gulp.task('default', ['mocha', 'watch-mocha']);
